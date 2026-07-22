@@ -1,0 +1,16 @@
+name: Belajar GitHub Actions
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Tampilkan Pesan
+        run: echo "Halo! Saya adalah robot Actions. Push kamu berhasil!"
+      
+      - name: Tampilkan Waktu
+        run: echo "Waktu sekarang adalah $(date)"
