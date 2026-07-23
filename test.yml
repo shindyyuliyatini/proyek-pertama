@@ -1,0 +1,33 @@
+name: Auto-Test Index HTML
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-html:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Cek kode dari repository
+        uses: actions/checkout@v4
+      
+      - name: Cek apakah index.html ada
+        run: |
+          if [ -f "index.html" ]; then
+            echo "✅ index.html ditemukan!"
+          else
+            echo "❌ index.html tidak ditemukan!"
+            exit 1
+          fi
+      
+      - name: Cek apakah ada error di HTML
+        run: |
+          if grep -q "<h1>" index.html; then
+            echo "✅ index.html memiliki tag <h1>!"
+          else
+            echo "❌ index.html tidak memiliki tag <h1>!"
+            exit 1
+          fi
