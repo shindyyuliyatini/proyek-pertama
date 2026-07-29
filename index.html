@@ -58,6 +58,75 @@
 #2d3748; }
         .stats .label { font-size: 14px; color: #a0aec0; }
         .footer { font-size: 14px; color: #a0aec0; margin-top: 20px; }
+/* ===== RESPONSIF UNTUK HP ===== */
+@media (max-width: 768px) {
+    .card {
+        padding: 25px;
+        margin: 10px;
+    }
+    
+    .profile-img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    h1 {
+        font-size: 22px;
+    }
+    
+    .title {
+        font-size: 15px;
+    }
+    
+    .badge {
+        font-size: 12px;
+        padding: 4px 12px;
+        margin: 3px;
+    }
+    
+    .stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+    }
+}
+
+/* ===== RESPONSIF UNTUK HP KECIL ===== */
+@media (max-width: 480px) {
+    .card {
+        padding: 15px;
+    }
+    
+    .profile-img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    h1 {
+        font-size: 18px;
+    }
+    
+    .badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+    
+    .stats .number {
+        font-size: 18px;
+    }
+    
+    .stats .label {
+        font-size: 11px;
+    }
+}
     </style>
 </head>
 <body>
