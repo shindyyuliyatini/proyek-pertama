@@ -1,5 +1,98 @@
-<h1>Hello World!!</h1>
-<p>Selamat datang di proyek saya, perkenalkan saya Shindy</p>
-<p>Fitur baru yang belum selesai</p>
-<p>Belajar stash lagi</p>
-Perubahan 1
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Portofolio - Shindy Yuliyatini</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #667eea;
+        }
+        h1 { color: #2d3748; }
+        .badge {
+            display: inline-block;
+            background: #edf2f7;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin: 10px 5px;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+        hr { margin: 30px 0; }
+        .stats { display: flex; justify-content: space-around; }
+        .stats .number { font-size: 24px; font-weight: bold; color: 
+#2d3748; }
+        .stats .label { font-size: 14px; color: #a0aec0; }
+        .footer { font-size: 14px; color: #a0aec0; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="foto-saya.jpeg" alt="Foto" class="profile-img">
+        <h1>Shindy Yuliyatini</h1>
+        <p>🚀 Pembelajar & Peneliti | Belajar Git & Pemrograman</p>
+        <p>Halo! Saya sedang belajar menjadi Full-Stack Developer.</p>
+        
+        <div>
+            <span class="badge">#Git</span>
+            <span class="badge">#GitHub</span>
+            <span class="badge">#HTML</span>
+            <span class="badge">#Datascience</span>
+            <span class="badge">#Ai</span>
+        </div>
+
+        <div>
+            <a href="https://github.com/shindyyuliyatini" class="btn" 
+target="_blank">Lihat GitHub</a>
+            <a href="#" class="btn btn-outline">Refresh</a>
+        </div>
+
+        <hr>
+
+        <div class="stats">
+            <div><div class="number">5+</div><div 
+class="label">Materi</div></div>
+            <div><div class="number">2</div><div 
+class="label">Proyek</div></div>
+            <div><div class="number">1</div><div 
+class="label">Website</div></div>
+        </div>
+
+        <div class="footer">Dibuat dengan ❤️ oleh Shindy Yuliyatini</div>
+    </div>
+</body>
+</html>
