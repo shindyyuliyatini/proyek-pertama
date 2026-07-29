@@ -148,6 +148,18 @@
     </style>
 </head>
 <body>
+<!-- Quote Motivasi -->
+<hr>
+<div id="quote-container" style="margin: 20px 0; padding: 15px; 
+background: #f7fafc; border-radius: 10px; min-height: 80px;">
+    <p id="quote-text" style="font-style: italic; color: 
+#4a5568;">"Terus semangat jangan menyerah"</p>
+    <p id="quote-author" style="font-weight: bold; color: #667eea; 
+margin-top: 5px;">-</p>
+    <button onclick="fetchQuote()" class="btn btn-outline" 
+style="margin-top: 10px; padding: 8px 20px; font-size: 14px;">✨ Quote 
+Baru</button>
+</div>
     <div class="card">
         <img src="foto-saya.jpeg" alt="Foto" class="profile-img">
         <h1>Shindy Yuliyatini</h1>
@@ -171,6 +183,23 @@ target="_blank">Lihat GitHub</a>
         <hr>
 
         <div class="stats">
+<!-- Tombol Dark Mode -->
+<button id="darkModeBtn" onclick="toggleDarkMode()" class="btn 
+btn-outline" style="margin: 10px 0;">🌙 Mode Gelap</button>
+
+<hr>
+
+<!-- Quote Motivasi -->
+<div id="quote-container" style="margin: 20px 0; padding: 15px; 
+background: #f7fafc; border-radius: 10px; min-height: 80px;">
+    <p id="quote-text" style="font-style: italic; color: #4a5568;">"Memuat 
+kata-kata bijak..."</p>
+    <p id="quote-author" style="font-weight: bold; color: #667eea; 
+margin-top: 5px;">-</p>
+    <button onclick="fetchQuote()" class="btn btn-outline" 
+style="margin-top: 10px; padding: 8px 20px; font-size: 14px;">✨ Quote 
+Baru</button>
+</div>
             <div><div class="number">5+</div><div 
 class="label">Materi</div></div>
             <div><div class="number">2</div><div 
@@ -181,5 +210,55 @@ class="label">Website</div></div>
 
         <div class="footer">Dibuat dengan ❤️ oleh Shindy Yuliyatini</div>
     </div>
+<script>
+    // ===== DARK MODE =====
+    function toggleDarkMode() {
+        const body = document.body;
+        body.classList.toggle('dark-mode');
+        
+        // Ganti teks tombol
+        const btn = document.getElementById('darkModeBtn');
+        if (body.classList.contains('dark-mode')) {
+            btn.textContent = '☀️ Mode Terang';
+        } else {
+            btn.textContent = '🌙 Mode Gelap';
+        }
+    }
+
+    // ===== QUOTE MOTIVASI =====
+    async function fetchQuote() {
+        const quoteText = document.getElementById('quote-text');
+        const quoteAuthor = document.getElementById('quote-author');
+        
+        quoteText.textContent = '⏳ Sedang memuat quote...';
+        quoteAuthor.textContent = '-';
+        
+        try {
+            const response = await 
+fetch('https://api.quotable.io/random');
+            const data = await response.json();
+            quoteText.textContent = `"${data.content}"`;
+            quoteAuthor.textContent = `- ${data.author}`;
+        } catch (error) {
+            quoteText.textContent = '"Kegagalan adalah batu loncatan 
+menuju kesuksesan."';
+            quoteAuthor.textContent = '- Unknown';
+        }
+    }
+
+    // ===== ANIMASI MUNCUL =====
+    document.addEventListener('DOMContentLoaded', function() {
+        const card = document.querySelector('.card');
+        setTimeout(function() {
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s 
+ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 100);
+        
+        // Jalankan quote saat halaman dimuat
+        fetchQuote();
+    });
+</script>
 </body>
 </html>
