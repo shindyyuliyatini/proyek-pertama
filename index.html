@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio - Shindy Yuliyatini</title>
     <style>
+	/* ===== DARK MODE ===== */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+}
+
+body.dark-mode .card {
+    background-color: rgba(26, 32, 44, 0.95);
+}
+
+body.dark-mode h1 {
+    color: #e2e8f0;
+}
+
+body.dark-mode p {
+    color: #a0aec0;
+}
+
+body.dark-mode .badge {
+    background: #2d3748;
+    color: #e2e8f0;
+}
+
+body.dark-mode .stats .number {
+    color: #e2e8f0;
+}
+
+body.dark-mode .btn-outline {
+    color: #e2e8f0;
+    border-color: #e2e8f0;
+}
+
+body.dark-mode .btn-outline:hover {
+    background: #e2e8f0;
+    color: #2d3748;
+}
+
+body.dark-mode .footer {
+    color: #718096;
+}
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: Arial, sans-serif;
@@ -100,6 +139,12 @@
             <a href="https://github.com/shindyyuliyatini" class="btn" 
 target="_blank">Lihat GitHub</a>
             <a href="#" class="btn btn-outline">Refresh</a>
+		<a href="https://github.com/shindyyuliyatini" class="btn" 
+target="_blank">Lihat GitHub</a>
+    		<a href="#" class="btn btn-outline">Refresh</a>
+    		<!-- TOMBOL DARK MODE -->
+    		<button onclick="toggleDarkMode()" class="btn btn-outline" 
+		id="darkModeBtn" style="margin-top: 10px;">🌙 Mode Gelap</button>
         </div>
 
         <hr>
@@ -115,5 +160,19 @@ class="label">Website</div></div>
 
         <div class="footer">Dibuat dengan ❤️ oleh Shindy Yuliyatini</div>
     </div>
+<script>
+    // ===== DARK MODE =====
+    function toggleDarkMode() {
+        const body = document.body;
+        body.classList.toggle('dark-mode');
+        
+        const btn = document.getElementById('darkModeBtn');
+        if (body.classList.contains('dark-mode')) {
+            btn.textContent = '☀️ Mode Terang';
+        } else {
+            btn.textContent = '🌙 Mode Gelap';
+        }
+    }
+</script>
 </body>
 </html>
