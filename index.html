@@ -151,22 +151,19 @@ body.dark-mode .footer {
     color: white;
 }
 // ===== JAM DIGITAL =====
-	document.addEventListener('DOMContentLoaded', function(){
-function updateClock() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    document.getElementById('clock').textContent = 
-`${hours}:${minutes}:${seconds}`;
-}
-
-// Jalankan setiap detik
-setInterval(updateClock, 1000);
-
-// Jalankan pertama kali saat halaman dimuat
-updateClock();
-    </style>
+document.addEventListener('DOMContentLoaded', function() {
+        function updateClock() {
+            const now = new Date();
+            const jam = String(now.getHours()).padStart(2, '0');
+            const menit = String(now.getMinutes()).padStart(2, '0');
+            const detik = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = 
+`${jam}:${menit}:${detik}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    });    
+</style>
 </head>
 <body>
     <div class="card">
