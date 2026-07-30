@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio - Shindy Yuliyatini</title>
     <style>
+/* ===== JAM DIGITAL ===== */
+#clock-container {
+    background: #f7fafc;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    transition: background 0.5s ease;
+}
+body.dark-mode #clock-container {
+    background: #2d3748;
+}
+#clock {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2d3748;
+    font-family: 'Courier New', monospace;
+    transition: color 0.5s ease;
+}
+body.dark-mode #clock {
+    color: #e2e8f0;
+}
 	/* ===== DARK MODE ===== */
 body.dark-mode {
     background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
@@ -129,6 +150,21 @@ body.dark-mode .footer {
     background: #5a67d8;
     color: white;
 }
+// ===== JAM DIGITAL =====
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').textContent = 
+`${hours}:${minutes}:${seconds}`;
+}
+
+// Jalankan setiap detik
+setInterval(updateClock, 1000);
+
+// Jalankan pertama kali saat halaman dimuat
+updateClock();
     </style>
 </head>
 <body>
@@ -165,6 +201,14 @@ class="label">Materi</div></div>
 class="label">Proyek</div></div>
             <div><div class="number">1</div><div 
 class="label">Website</div></div>
+<!-- Jam Digital -->
+<div id="clock-container" style="margin: 20px 0; padding: 15px; 
+background: #f7fafc; border-radius: 10px;">
+    <p style="font-size: 14px; color: #a0aec0; margin-bottom: 5px;">🕐 
+Waktu Sekarang</p>
+    <p id="clock" style="font-size: 28px; font-weight: bold; color: 
+#2d3748; font-family: monospace;">00:00:00</p>
+</div>
         </div>
 
         <div class="footer">Dibuat dengan ❤️ oleh Shindy Yuliyatini</div>
