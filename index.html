@@ -5,148 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio - Shindy Yuliyatini</title>
     <style>
-// ===== FITUR CUACA =====
-async function fetchWeather() {
-    const weatherInfo = document.getElementById('weather-info');
-    if (!weatherInfo) {
-        console.log('Elemen weather-info tidak ditemukan');
-        return;
-    }
-    
-    weatherInfo.textContent = '⏳ Memuat data cuaca...';
-    
-    try {
-        const response = await 
-fetch('https://api.open-meteo.com/v1/forecast?latitude=-6.20&longitude=106.80&current_weather=true');
-        const data = await response.json();
-        
-        const temp = data.current_weather.temperature;
-        const weatherCode = data.current_weather.weathercode;
-        
-        let emoji = '🌡️';
-        if (weatherCode === 0) emoji = '☀️';
-        else if (weatherCode === 1 || weatherCode === 2) emoji = '🌤️';
-        else if (weatherCode === 3) emoji = '☁️';
-        else if (weatherCode === 45 || weatherCode === 48) emoji = '🌫️';
-        else if (weatherCode === 51 || weatherCode === 61 || weatherCode 
-=== 80) emoji = '🌧️';
-        else if (weatherCode === 95) emoji = '⛈️';
-        
-        weatherInfo.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 15px; 
-flex-wrap: wrap;">
-                <span style="font-size: 40px;">${emoji}</span>
-                <div>
-                    <div style="font-size: 28px; font-weight: bold; color: 
-#2d3748;">${temp}°C</div>
-                    <div style="color: #a0aec0; font-size: 14px;">Jakarta, 
-Indonesia</div>
-                </div>
-            </div>
-        `;
-    } catch (error) {
-        weatherInfo.textContent = '❌ Gagal memuat cuaca. Coba lagi 
-nanti.';
-        console.log('Error cuaca:', error);
-    }
-}
-
-// Panggil fetchWeather saat halaman dimuat
-document.addEventListener('DOMContentLoaded', function() {
-    fetchWeather();
-});
-/* ===== TO-DO LIST ===== */
-#todo-list li {
-    background: #f7fafc;
-    padding: 12px 15px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.3s ease;
-}
-body.dark-mode #todo-list li {
-    background: #2d3748;
-    color: #e2e8f0;
-}
-#todo-list li.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-#todo-list li button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 0 5px;
-}
-#todo-list li button.delete-btn {
-    color: #e53e3e;
-}
-#todo-list li button.complete-btn {
-    color: #38a169;
-}
-/* ===== JAM DIGITAL ===== */
-#clock-container {
-    background: #f7fafc;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 20px 0;
-    transition: background 0.5s ease;
-}
-body.dark-mode #clock-container {
-    background: #2d3748;
-}
-#clock {
-    font-size: 28px;
-    font-weight: bold;
-    color: #2d3748;
-    font-family: 'Courier New', monospace;
-    transition: color 0.5s ease;
-}
-body.dark-mode #clock {
-    color: #e2e8f0;
-}
-	/* ===== DARK MODE ===== */
-body.dark-mode {
-    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-}
-
-body.dark-mode .card {
-    background-color: rgba(26, 32, 44, 0.95);
-}
-
-body.dark-mode h1 {
-    color: #e2e8f0;
-}
-
-body.dark-mode p {
-    color: #a0aec0;
-}
-
-body.dark-mode .badge {
-    background: #2d3748;
-    color: #e2e8f0;
-}
-
-body.dark-mode .stats .number {
-    color: #e2e8f0;
-}
-
-body.dark-mode .btn-outline {
-    color: #e2e8f0;
-    border-color: #e2e8f0;
-}
-
-body.dark-mode .btn-outline:hover {
-    background: #e2e8f0;
-    color: #2d3748;
-}
-
-body.dark-mode .footer {
-    color: #718096;
-}
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: Arial, sans-serif;
@@ -156,6 +14,10 @@ body.dark-mode .footer {
             justify-content: center;
             align-items: center;
             padding: 20px;
+            transition: background 0.5s ease;
+        }
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a202c, #2d3748);
         }
         .card {
             background: white;
@@ -165,6 +27,10 @@ body.dark-mode .footer {
             width: 100%;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: background 0.5s ease;
+        }
+        body.dark-mode .card {
+            background: #2d3748;
         }
         .card:hover {
             transform: scale(1.02);
@@ -178,6 +44,9 @@ body.dark-mode .footer {
             border: 3px solid #667eea;
         }
         h1 { color: #2d3748; }
+        body.dark-mode h1 { color: #e2e8f0; }
+        p { color: #4a5568; }
+        body.dark-mode p { color: #a0aec0; }
         .badge {
             display: inline-block;
             background: #edf2f7;
@@ -185,6 +54,10 @@ body.dark-mode .footer {
             border-radius: 20px;
             margin: 5px;
             font-size: 14px;
+        }
+        body.dark-mode .badge {
+            background: #2d3748;
+            color: #e2e8f0;
         }
         .btn {
             display: inline-block;
@@ -194,20 +67,61 @@ body.dark-mode .footer {
             border-radius: 30px;
             text-decoration: none;
             margin: 10px 5px;
+            border: none;
+            cursor: pointer;
         }
+        .btn:hover { background: #5a67d8; }
         .btn-outline {
             background: transparent;
             border: 2px solid #667eea;
             color: #667eea;
         }
-        hr { margin: 30px 0; }
+        body.dark-mode .btn-outline {
+            color: #e2e8f0;
+            border-color: #e2e8f0;
+        }
+        body.dark-mode .btn-outline:hover {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+        hr { margin: 30px 0; border: 1px solid #e2e8f0; }
         .stats { display: flex; justify-content: space-around; }
-        .stats .number { font-size: 24px; font-weight: bold; color: 
-#2d3748; }
+        .stats .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        body.dark-mode .stats .number { color: #e2e8f0; }
         .stats .label { font-size: 14px; color: #a0aec0; }
         .footer { font-size: 14px; color: #a0aec0; margin-top: 20px; }
         
-        /* Responsif HP */
+        #clock { font-size: 28px; font-weight: bold; color: #2d3748; 
+font-family: monospace; }
+        body.dark-mode #clock { color: #e2e8f0; }
+        
+        #todo-list { list-style: none; padding: 0; text-align: left; }
+        #todo-list li {
+            background: #f7fafc;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        body.dark-mode #todo-list li {
+            background: #1a202c;
+            color: #e2e8f0;
+        }
+        #todo-list li.completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        #todo-list li button { background: transparent; border: none; 
+cursor: pointer; font-size: 18px; }
+        .complete-btn { color: #38a169; }
+        .delete-btn { color: #e53e3e; }
+        
         @media (max-width: 768px) {
             .card { padding: 20px; }
             .profile-img { width: 80px; height: 80px; }
@@ -221,32 +135,7 @@ body.dark-mode .footer {
             h1 { font-size: 18px; }
             .stats .number { font-size: 18px; }
         }
-#darkModeBtn {
-    background: #667eea;
-    color: white;
-    border: 2px solid #667eea;
-    transition: background 0.3s ease;
-}
-
-#darkModeBtn:hover {
-    background: #5a67d8;
-    color: white;
-}
-// ===== JAM DIGITAL =====
-    function updateClock() {
-        const now = new Date();
-        const jam = String(now.getHours()).padStart(2, '0');
-        const menit = String(now.getMinutes()).padStart(2, '0');
-        const detik = String(now.getSeconds()).padStart(2, '0');
-        document.getElementById('clock').textContent = 
-`${jam}:${menit}:${detik}`;
-    }
-
-    // Jalankan setiap detik
-    setInterval(updateClock, 1000);
-    // Jalankan pertama kali
-    updateClock();
-</style>
+    </style>
 </head>
 <body>
     <div class="card">
@@ -266,11 +155,9 @@ body.dark-mode .footer {
         <div>
             <a href="https://github.com/shindyyuliyatini" class="btn" 
 target="_blank">Lihat GitHub</a>
-    		<a href="#" class="btn btn-outline">Refresh</a>
-    		<!-- TOMBOL DARK MODE -->
-    		<button onclick="toggleDarkMode()" class="btn btn-outline" 
-		id="darkModeBtn" style="margin-top: 10px;">🌙 Mode Gelap</button>
-		<a href="cv.html" class="btn btn-outline">📄 Lihat CV</a>
+            <a href="#" class="btn btn-outline">Refresh</a>
+            <button onclick="toggleDarkMode()" class="btn btn-outline" 
+id="darkModeBtn">🌙 Mode Gelap</button>
         </div>
 
         <hr>
@@ -282,193 +169,114 @@ class="label">Materi</div></div>
 class="label">Proyek</div></div>
             <div><div class="number">1</div><div 
 class="label">Website</div></div>
-<!-- Jam Digital -->
-<div id="clock-container" style="margin: 20px 0; padding: 15px; 
-background: #f7fafc; border-radius: 10px;">
-    <p style="font-size: 14px; color: #a0aec0; margin-bottom: 5px;">🕐 
-Waktu Sekarang</p>
-    <p id="clock" style="font-size: 28px; font-weight: bold; color: 
-#2d3748; font-family: monospace;">00:00:00</p>
-</div>
         </div>
-<!-- To-Do List -->
-<hr>
-<h3 style="color: #2d3748; margin-bottom: 15px;">📋 To-Do List</h3>
 
-<div style="display: flex; gap: 10px; margin-bottom: 15px;">
-    <input type="text" id="todo-input" placeholder="Tulis tugas..." 
-style="flex: 1; padding: 10px; border: 2px solid #e2e8f0; border-radius: 
-10px; font-size: 14px;">
-    <button onclick="addTodo()" class="btn" style="padding: 10px 20px;">➕ 
-Tambah</button>
-</div>
+        <!-- Jam Digital -->
+        <div style="margin: 20px 0;">
+            <p style="font-size: 14px; color: #a0aec0;">🕐 Waktu 
+Sekarang</p>
+            <p id="clock">00:00:00</p>
+        </div>
 
-<ul id="todo-list" style="list-style: none; padding: 0; text-align: 
-left;">
-    <!-- Tugas akan muncul di sini -->
-</ul>
-<!-- Cuaca -->
-<hr>
-<h3 style="color: #2d3748; margin-bottom: 15px;">🌤️ Cuaca Hari Ini</h3>
+        <!-- To-Do List -->
+        <hr>
+        <h3 style="color: #2d3748; margin-bottom: 15px;">📋 To-Do 
+List</h3>
+        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+            <input type="text" id="todo-input" placeholder="Tulis 
+tugas..." style="flex: 1; padding: 10px; border: 2px solid #e2e8f0; 
+border-radius: 10px;">
+            <button onclick="addTodo()" class="btn" style="padding: 10px 
+20px;">➕ Tambah</button>
+        </div>
+        <ul id="todo-list"></ul>
 
-<div id="weather-container" style="background: #f7fafc; padding: 15px; 
-border-radius: 10px; min-height: 80px;">
-    <p id="weather-info" style="color: #4a5568;">⏳ Memuat data 
-cuaca...</p>
-</div>
         <div class="footer">Dibuat dengan ❤️ oleh Shindy Yuliyatini</div>
     </div>
-<script>
-    // ===== JAM DIGITAL =====
-    function updateClock() {
-        const now = new Date();
-        const h = String(now.getHours()).padStart(2, '0');
-        const m = String(now.getMinutes()).padStart(2, '0');
-        const s = String(now.getSeconds()).padStart(2, '0');
-        document.getElementById('clock').textContent = h + ':' + m + ':' + 
-s;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
 
-    // ===== DARK MODE =====
-    function toggleDarkMode() {
-        const body = document.body;
-        body.classList.toggle('dark-mode');
-        const btn = document.getElementById('darkModeBtn');
-        if (body.classList.contains('dark-mode')) {
-            btn.textContent = '☀️ Mode Terang';
-        } else {
-            btn.textContent = '🌙 Mode Gelap';
+    <script>
+        // ===== JAM DIGITAL =====
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = h + ':' + m + 
+':' + s;
         }
-    }
+        setInterval(updateClock, 1000);
+        updateClock();
 
-    // ===== QUOTE MOTIVASI =====
-    async function fetchQuote() {
-        const text = document.getElementById('quote-text');
-        const author = document.getElementById('quote-author');
-        text.textContent = '⏳ Sedang memuat quote...';
-        author.textContent = '-';
-        try {
-            const res = await fetch('https://api.quotable.io/random');
-            const data = await res.json();
-            text.textContent = '"' + data.content + '"';
-            author.textContent = '- ' + data.author;
-        } catch (error) {
-            text.textContent = '"Kegagalan adalah batu loncatan menuju 
-kesuksesan."';
-            author.textContent = '- Unknown';
+        // ===== DARK MODE =====
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            const btn = document.getElementById('darkModeBtn');
+            if (body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️ Mode Terang';
+            } else {
+                btn.textContent = '🌙 Mode Gelap';
+            }
         }
-    }
 
-    // ===== SAPAAN OTOMATIS =====
-    function updateGreeting() {
-        const now = new Date();
-        const hour = now.getHours();
-        let msg = '';
-        if (hour >= 5 && hour < 12) msg = '🌅 Selamat pagi! Semangat 
-belajar!';
-        else if (hour >= 12 && hour < 15) msg = '☀️ Selamat siang! Tetap 
-produktif!';
-        else if (hour >= 15 && hour < 18) msg = '🌇 Selamat sore! 
-Istirahat sejenak!';
-        else msg = '🌙 Selamat malam! Jangan lupa istirahat!';
-        document.getElementById('greeting').textContent = msg;
-    }
-
-    // ===== TO-DO LIST =====
-    let todos = [];
-    function loadTodos() {
-        const saved = localStorage.getItem('todos');
-        if (saved) {
-            todos = JSON.parse(saved);
+        // ===== TO-DO LIST =====
+        let todos = [];
+        function loadTodos() {
+            const saved = localStorage.getItem('todos');
+            if (saved) {
+                todos = JSON.parse(saved);
+                renderTodos();
+            }
+        }
+        function saveTodos() {
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+        function addTodo() {
+            const input = document.getElementById('todo-input');
+            const text = input.value.trim();
+            if (text === '') {
+                alert('Tulis tugas dulu!');
+                return;
+            }
+            todos.push({ text: text, completed: false });
+            input.value = '';
+            saveTodos();
             renderTodos();
         }
-    }
-    function saveTodos() {
-        localStorage.setItem('todos', JSON.stringify(todos));
-    }
-    function addTodo() {
-        const input = document.getElementById('todo-input');
-        const text = input.value.trim();
-        if (text === '') {
-            alert('Tulis tugas dulu!');
-            return;
+        function deleteTodo(index) {
+            todos.splice(index, 1);
+            saveTodos();
+            renderTodos();
         }
-        todos.push({ text: text, completed: false });
-        input.value = '';
-        saveTodos();
-        renderTodos();
-    }
-    function deleteTodo(index) {
-        todos.splice(index, 1);
-        saveTodos();
-        renderTodos();
-    }
-    function toggleTodo(index) {
-        todos[index].completed = !todos[index].completed;
-        saveTodos();
-        renderTodos();
-    }
-    function renderTodos() {
-        const list = document.getElementById('todo-list');
-        list.innerHTML = '';
-        todos.forEach(function(todo, index) {
-            const li = document.createElement('li');
-            li.className = todo.completed ? 'completed' : '';
-            li.innerHTML = '<span style="flex:1;">' + todo.text + 
+        function toggleTodo(index) {
+            todos[index].completed = !todos[index].completed;
+            saveTodos();
+            renderTodos();
+        }
+        function renderTodos() {
+            const list = document.getElementById('todo-list');
+            list.innerHTML = '';
+            todos.forEach(function(todo, index) {
+                const li = document.createElement('li');
+                li.className = todo.completed ? 'completed' : '';
+                li.innerHTML = '<span style="flex:1;">' + todo.text + 
 '</span>' +
-                '<div>' +
-                '<button class="complete-btn" onclick="toggleTodo(' + 
+                    '<div>' +
+                    '<button class="complete-btn" onclick="toggleTodo(' + 
 index + ')">' +
-                (todo.completed ? '↩️' : '✅') +
-                '</button>' +
-                '<button class="delete-btn" onclick="deleteTodo(' + index 
-+ ')">🗑️</button>' +
-                '</div>';
-            list.appendChild(li);
-        });
-    }
-
-    // ===== FITUR CUACA =====
-    async function fetchWeather() {
-        const info = document.getElementById('weather-info');
-        if (!info) return;
-        info.textContent = '⏳ Memuat data cuaca...';
-        try {
-            const res = await 
-fetch('https://api.open-meteo.com/v1/forecast?latitude=-6.20&longitude=106.80&current_weather=true');
-            const data = await res.json();
-            const temp = data.current_weather.temperature;
-            const code = data.current_weather.weathercode;
-            let emoji = '🌡️';
-            if (code === 0) emoji = '☀️';
-            else if (code === 1 || code === 2) emoji = '🌤️';
-            else if (code === 3) emoji = '☁️';
-            else if (code === 45 || code === 48) emoji = '🌫️';
-            else if (code === 51 || code === 61 || code === 80) emoji = 
-'🌧️';
-            else if (code === 95) emoji = '⛈️';
-            info.innerHTML = '<div 
-style="display:flex;align-items:center;gap:15px;flex-wrap:wrap;">' +
-                '<span style="font-size:40px;">' + emoji + '</span>' +
-                '<div><div 
-style="font-size:28px;font-weight:bold;color:#2d3748;">' + temp + 
-'°C</div>' +
-                '<div style="color:#a0aec0;font-size:14px;">Jakarta, 
-Indonesia</div></div></div>';
-        } catch (error) {
-            info.textContent = '❌ Gagal memuat cuaca. Coba lagi nanti.';
+                    (todo.completed ? '↩️' : '✅') +
+                    '</button>' +
+                    '<button class="delete-btn" onclick="deleteTodo(' + 
+index + ')">🗑️</button>' +
+                    '</div>';
+                list.appendChild(li);
+            });
         }
-    }
 
-    // ===== JALANKAN SAAT HALAMAN DIMUAT =====
-    document.addEventListener('DOMContentLoaded', function() {
-        loadTodos();
-        fetchQuote();
-        updateGreeting();
-        fetchWeather();
-    });
-</script>
+        // ===== JALANKAN SAAT HALAMAN DIMUAT =====
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTodos();
+        });
+    </script>
 </body>
 </html>
