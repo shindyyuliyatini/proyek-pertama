@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio - Shindy Yuliyatini</title>
     <style>
+/* ===== TO-DO LIST ===== */
+#todo-list li {
+    background: #f7fafc;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+body.dark-mode #todo-list li {
+    background: #2d3748;
+    color: #e2e8f0;
+}
+#todo-list li.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+#todo-list li button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0 5px;
+}
+#todo-list li button.delete-btn {
+    color: #e53e3e;
+}
+#todo-list li button.complete-btn {
+    color: #38a169;
+}
 /* ===== JAM DIGITAL ===== */
 #clock-container {
     background: #f7fafc;
@@ -209,7 +241,22 @@ Waktu Sekarang</p>
 #2d3748; font-family: monospace;">00:00:00</p>
 </div>
         </div>
+<!-- To-Do List -->
+<hr>
+<h3 style="color: #2d3748; margin-bottom: 15px;">📋 To-Do List</h3>
 
+<div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <input type="text" id="todo-input" placeholder="Tulis tugas..." 
+style="flex: 1; padding: 10px; border: 2px solid #e2e8f0; border-radius: 
+10px; font-size: 14px;">
+    <button onclick="addTodo()" class="btn" style="padding: 10px 20px;">➕ 
+Tambah</button>
+</div>
+
+<ul id="todo-list" style="list-style: none; padding: 0; text-align: 
+left;">
+    <!-- Tugas akan muncul di sini -->
+</ul>
         <div class="footer">Dibuat dengan ❤️ oleh Shindy Yuliyatini</div>
     </div>
 <script>
@@ -241,6 +288,78 @@ Waktu Sekarang</p>
     setInterval(updateClock, 1000);
     // Jalankan pertama kali
     updateClock();
+
+// ===== TO-DO LIST =====
+let todos = [];
+
+// Load dari Local Storage saat halaman dimuat
+function loadTodos() {
+    const savedTodos = localStorage.getItem('todos');
+    if (savedTodos) {
+        todos = JSON.parse(savedTodos);
+        renderTodos();
+    }
+}
+
+// Simpan ke Local Storage
+function saveTodos() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+// Tambah tugas baru
+function addTodo() {
+    const input = document.getElementById('todo-input');
+    const text = input.value.trim();
+    if (text === '') {
+        alert('Tulis tugas dulu!');
+        return;
+    }
+    todos.push({ text: text, completed: false });
+    input.value = '';
+    saveTodos();
+    renderTodos();
+}
+
+// Hapus tugas
+function deleteTodo(index) {
+    todos.splice(index, 1);
+    saveTodos();
+    renderTodos();
+}
+
+// Tandai selesai / belum selesai
+function toggleTodo(index) {
+    todos[index].completed = !todos[index].completed;
+    saveTodos();
+    renderTodos();
+}
+
+// Tampilkan daftar tugas
+function renderTodos() {
+    const list = document.getElementById('todo-list');
+    list.innerHTML = '';
+    todos.forEach((todo, index) => {
+        const li = document.createElement('li');
+        li.className = todo.completed ? 'completed' : '';
+        li.innerHTML = `
+            <span style="flex: 1;">${todo.text}</span>
+            <div>
+                <button class="complete-btn" 
+onclick="toggleTodo(${index})">
+                    ${todo.completed ? '↩️' : '✅'}
+                </button>
+                <button class="delete-btn" 
+onclick="deleteTodo(${index})">🗑️</button>
+            </div>
+        `;
+        list.appendChild(li);
+    });
+}
+
+// Panggil loadTodos saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    loadTodos();
+});
 </script>
 </body>
 </html>
