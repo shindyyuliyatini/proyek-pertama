@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator - Shindy Yuliyatini</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #display {
+            width: 100%;
+            padding: 15px;
+            font-size: 32px;
+            text-align: right;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f7fafc;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .btn {
+            padding: 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn:hover {
+            transform: scale(1.02);
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .btn-number {
+            background: #edf2f7;
+            color: #2d3748;
+        }
+        .btn-number:hover {
+            background: #e2e8f0;
+        }
+        .btn-operator {
+            background: #667eea;
+            color: white;
+        }
+        .btn-operator:hover {
+            background: #5a67d8;
+        }
+        .btn-equal {
+            background: #48bb78;
+            color: white;
+            grid-column: span 2;
+        }
+        .btn-equal:hover {
+            background: #38a169;
+        }
+        .btn-clear {
+            background: #fc8181;
+            color: white;
+        }
+        .btn-clear:hover {
+            background: #f56565;
+        }
+        .riwayat {
+            margin-top: 20px;
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .riwayat h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .riwayat-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+            font-size: 14px;
+        }
+        .btn-hapus-riwayat {
+            margin-top: 10px;
+            padding: 5px 15px;
+            background: #fc8181;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-kembali {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #667eea;
+            text-decoration: none;
+        }
+        @media (max-width: 480px) {
+            .btn { padding: 15px; font-size: 18px; }
+            #display { font-size: 24px; padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 Kalkulator</h1>
+        
+        <input type="text" id="display" readonly>
+        
+        <div class="btn-grid">
+            <button class="btn btn-clear" onclick="clearDisplay()">C</button>
+            <button class="btn btn-operator" 
+onclick="appendOperator('/')">÷</button>
+            <button class="btn btn-operator" 
+onclick="appendOperator('*')">×</button>
+            <button class="btn btn-operator" 
+onclick="appendOperator('-')">−</button>
+            
+            <button class="btn btn-number" onclick="appendNumber('7')">7</button>
+            <button class="btn btn-number" onclick="appendNumber('8')">8</button>
+            <button class="btn btn-number" onclick="appendNumber('9')">9</button>
+            <button class="btn btn-operator" 
+onclick="appendOperator('+')">+</button>
+            
+            <button class="btn btn-number" onclick="appendNumber('4')">4</button>
+            <button class="btn btn-number" onclick="appendNumber('5')">5</button>
+            <button class="btn btn-number" onclick="appendNumber('6')">6</button>
+            <button class="btn btn-equal" onclick="calculate()">=</button>
+            
+            <button class="btn btn-number" onclick="appendNumber('1')">1</button>
+            <button class="btn btn-number" onclick="appendNumber('2')">2</button>
+            <button class="btn btn-number" onclick="appendNumber('3')">3</button>
+            <button class="btn btn-number" onclick="appendNumber('0')">0</button>
+            
+            <button class="btn btn-number" onclick="appendNumber('.')">.</button>
+            <button class="btn btn-operator" onclick="clearDisplay()">⌫</button>
+        </div>
+        
+        <div class="riwayat">
+            <h3>📜 Riwayat</h3>
+            <div id="riwayat-list"></div>
+            <button class="btn-hapus-riwayat" onclick="hapusRiwayat()">🗑️ Hapus 
+Riwayat</button>
+        </div>
+        
+        <a href="https://shindyyuliyatin.github.io/proyek-pertama/" 
+class="btn-kembali">🏠 Kembali ke Portofolio</a>
+    </div>
+
+    <script>
+        // ===== KALKULATOR =====
+        let display = document.getElementById('display');
+        let riwayat = [];
+
+        // Load riwayat dari Local Storage
+        function loadRiwayat() {
+            const saved = localStorage.getItem('kalkulator_riwayat');
+            if (saved) {
+                riwayat = JSON.parse(saved);
+                renderRiwayat();
+            }
+        }
+
+        // Simpan riwayat ke Local Storage
+        function saveRiwayat() {
+            localStorage.setItem('kalkulator_riwayat', JSON.stringify(riwayat));
+            renderRiwayat();
+        }
+
+        // Tambah angka ke display
+        function appendNumber(num) {
+            display.value += num;
+        }
+
+        // Tambah operator
+        function appendOperator(op) {
+            display.value += ' ' + op + ' ';
+        }
+
+        // Hapus semua
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        // Hitung hasil
+        function calculate() {
+            try {
+                const result = eval(display.value);
+                const perhitungan = display.value + ' = ' + result;
+                riwayat.push(perhitungan);
+                display.value = result;
+                saveRiwayat();
+            } catch (error) {
+                display.value = 'Error';
+                setTimeout(() => { display.value = ''; }, 1000);
+            }
+        }
+
+        // Tampilkan riwayat
+        function renderRiwayat() {
+            const list = document.getElementById('riwayat-list');
+            list.innerHTML = riwayat.map(item => 
+                `<div class="riwayat-item">${item}</div>`
+            ).join('');
+        }
+
+        // Hapus riwayat
+        function hapusRiwayat() {
+            if (confirm('Yakin ingin menghapus semua riwayat?')) {
+                riwayat = [];
+                saveRiwayat();
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            if (key >= '0' && key <= '9') {
+                appendNumber(key);
+            } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+                appendOperator(key);
+            } else if (key === 'Enter') {
+                calculate();
+            } else if (key === 'Backspace') {
+                display.value = display.value.slice(0, -1);
+            } else if (key === 'Escape') {
+                clearDisplay();
+            }
+        });
+
+        // Load riwayat saat halaman dimuat
+        loadRiwayat();
+    </script>
+</body>
+</html>
