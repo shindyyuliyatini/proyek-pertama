@@ -124,6 +124,38 @@ width: 200px; transition: transform 0.2s ease; }
             <a href="kontak.html" class="btn btn-outline" style="margin-top: 10px;">📩 Hubungi Saya</a>
 	    <a href="kalkulator.html" class="btn btn-outline">🧮 Kalkulator</a>
 </div>
+<!-- Tombol Sertifikat -->
+<button onclick="openModal()" class="btn btn-outline" style="margin-top: 10px;">
+    📜 Lihat Sertifikat
+</button>
+            
+<!-- Modal Popup Sertifikat -->
+<div id="certModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>📜 Sertifikat </h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+padding: 20px;">
+        
+            <!-- Sertifikat 1 -->
+            <div class="cert-card">
+                <img src="Shindy-Yuliyatini.png" alt="Sertifikat Seminar Nasional Informatika
+dan Komputer" style="width: 200px;
+border-radius: 10px;">
+                <p><strong>JavaScript</strong></p>
+                <p style="font-size: 12px; color: #666;">Dikeluarkan: 2025</p> 
+            </div>
+          <!-- Sertifikat 2 -->
+            <div class="cert-card">
+                <img src="Shindy-Yuliyatini2x.jpg" alt="Cara Mengambil Keputusan Bisnis yang 
+Tepat dengan Data & Ai" style="width: 200px;
+border-radius: 10px;">
+                <p><strong>JavaScript</strong></p>
+                <p style="font-size: 12px; color: #666;">Dikeluarkan: 2026</p>
+            </div>
+        </div>
+    </div>
+</div>
         <hr>
         <div class="stats">
             <div><div class="number">5+</div><div class="label">Materi</div></div>
@@ -146,31 +178,6 @@ width: 200px; transition: transform 0.2s ease; }
         <div id="weather-container">
             <p id="weather-info">⏳ Memuat data cuaca...</p>
         </div>
-<!-- Tombol Sertifikat -->
-<button onclick="openModal()" class="btn btn-outline" style="margin-top: 10px;">
-    📜 Lihat Sertifikat
-</button>
-
-<!-- Modal Popup Sertifikat -->
-<div id="certModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>📜 Sertifikat </h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; 
-padding: 20px;">
-            
-            <!-- Sertifikat -->
-            <div class="cert-card">
-                <img src="Shindy-Yuliyatini.png" alt="Sertifikat Seminar Nasional Informatika 
-dan Komputer" style="width: 200px; 
-border-radius: 10px;">
-                <p><strong>JavaScript</strong></p>
-                <p style="font-size: 12px; color: #666;">Dikeluarkan: 2025</p>
-            </div>
-            
-        </div>
-    </div>
-</div>
         <div class="footer">Dibuat dengan 🥰 oleh Shindy Yuliyatini</div>
     </div>
 
