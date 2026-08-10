@@ -124,8 +124,8 @@ width: 200px; transition: transform 0.2s ease; }
     <div class="card">
         <img src="foto-saya.jpeg" alt="Foto" class="profile-img">
         <h1>Shindy Yuliyatini</h1>
-        <p>🚀 Pembelajar & Peneliti | Belajar Git & Pemrograman</p>
-        <p>Halo! Saya sedang belajar menjadi Full-Stack Developer.</p>
+        <p>🚀 Pembelajar & Peneliti | Git - Pemrograman | Ai Data Automation</p>
+        <p>Halo! Saya Full-Stack Developer.</p>
         <div>
             <span class="badge">#Git</span>
             <span class="badge">#GitHub</span>
@@ -134,12 +134,11 @@ width: 200px; transition: transform 0.2s ease; }
             <span class="badge">#Ai</span>
         </div>
         <div>
-            <a href="https://github.com/shindyyuliyatini" class="btn" target="_blank">Lihat GitHub</a>
+            <a href="https://github.com/shindyyuliyatini" class="btn" target="_blank">GitHub Saya</a>
             <a href="#" class="btn btn-outline">Refresh</a>
-            <button onclick="toggleDarkMode()" class="btn btn-outline" id="darkModeBtn">🌙 Mode Gelap</button>
-            <a href="cv.html" class="btn btn-outline">📄 Lihat CV</a>
+            <button onclick="toggleDarkMode()" class="btn btn-outline" id="darkModeBtn">🌙 Dark Mode</button>
+            <a href="cv.html" class="btn btn-outline">📄 CV Saya</a>
             <a href="kontak.html" class="btn btn-outline" style="margin-top: 10px;">📩 Hubungi Saya</a>
-	    <a href="kalkulator.html" class="btn btn-outline">🧮 Kalkulator</a>
 </div>
 <!-- Tombol Sertifikat -->
 <button onclick="openModal()" class="btn btn-outline" style="margin-top: 10px;">
@@ -153,7 +152,6 @@ width: 200px; transition: transform 0.2s ease; }
         <h2>📜 Sertifikat </h2>
         <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
 padding: 20px;">
-        
             <!-- Sertifikat 1 -->
 			 <div class="cert-card">
                 <img src="Shindy-Yuliyatini2x.jpg" alt="Cara Mengambil Keputusan Bisnis yang Tepat dengan Data & Ai" style="width: 200px;
@@ -225,61 +223,10 @@ window.onclick = function(event) { if (event.target === document.getElementById(
             body.classList.toggle('dark-mode');
             const btn = document.getElementById('darkModeBtn');
             if (body.classList.contains('dark-mode')) {
-                btn.textContent = '☀️ Mode Terang';
+                btn.textContent = '☀️ Light Mode';
             } else {
-                btn.textContent = '🌙 Mode Gelap';
+                btn.textContent = '🌙 Dark Mode';
             }
-        }
-
-        // ===== TO-DO LIST =====
-        let todos = [];
-        function loadTodos() {
-            const saved = localStorage.getItem('todos');
-            if (saved) {
-                todos = JSON.parse(saved);
-                renderTodos();
-            }
-        }
-        function saveTodos() {
-            localStorage.setItem('todos', JSON.stringify(todos));
-        }
-        function addTodo() {
-            const input = document.getElementById('todo-input');
-            const text = input.value.trim();
-            if (text === '') {
-                alert('Tulis tugas dulu!');
-                return;
-            }
-            todos.push({ text: text, completed: false });
-            input.value = '';
-            saveTodos();
-            renderTodos();
-        }
-        function deleteTodo(index) {
-            todos.splice(index, 1);
-            saveTodos();
-            renderTodos();
-        }
-        function toggleTodo(index) {
-            todos[index].completed = !todos[index].completed;
-            saveTodos();
-            renderTodos();
-        }
-        function renderTodos() {
-            const list = document.getElementById('todo-list');
-            list.innerHTML = '';
-            todos.forEach(function(todo, index) {
-                const li = document.createElement('li');
-                li.className = todo.completed ? 'completed' : '';
-                li.innerHTML = '<span style="flex:1;">' + todo.text + '</span>' +
-                    '<div>' +
-                    '<button class="complete-btn" onclick="toggleTodo(' + index + ')">' +
-                    (todo.completed ? '↩️' : '✅') +
-                    '</button>' +
-                    '<button class="delete-btn" onclick="deleteTodo(' + index + ')">🗑️</button>' +
-                    '</div>';
-                list.appendChild(li);
-            });
         }
 
         // ===== CUACA =====
