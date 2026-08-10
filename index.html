@@ -136,9 +136,9 @@ width: 200px; transition: transform 0.2s ease; }
         <div>
             <a href="https://github.com/shindyyuliyatini" class="btn" target="_blank">GitHub Saya</a>
             <a href="#" class="btn btn-outline">Refresh</a>
-            <button onclick="toggleDarkMode()" class="btn btn-outline" id="darkModeBtn">🌙 Dark Mode</button>
             <a href="cv.html" class="btn btn-outline">📄 CV Saya</a>
             <a href="kontak.html" class="btn btn-outline" style="margin-top: 10px;">📩 Hubungi Saya</a>
+			<button onclick="toggleDarkMode()" class="btn btn-outline" id="darkModeBtn">🌙 Dark Mode</button>
 </div>
 <!-- Tombol Sertifikat -->
 <button onclick="openModal()" class="btn btn-outline" style="margin-top: 10px;">
@@ -216,8 +216,7 @@ window.onclick = function(event) { if (event.target === document.getElementById(
         }
         setInterval(updateClock, 1000);
         updateClock();
-
-        // ===== DARK MODE =====
+	 // ===== DARK MODE =====
         function toggleDarkMode() {
             const body = document.body;
             body.classList.toggle('dark-mode');
@@ -228,7 +227,6 @@ window.onclick = function(event) { if (event.target === document.getElementById(
                 btn.textContent = '🌙 Dark Mode';
             }
         }
-
         // ===== CUACA =====
         async function fetchWeather() {
             const info = document.getElementById('weather-info');
