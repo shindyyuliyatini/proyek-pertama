@@ -62,19 +62,27 @@
         
         <form action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="1821c658-d9f9-4855-8e7f-9c99eb088266">
-        <input type="text" name="name" required>
-        <input type="email" name="email" required>
-        <textarea name="message" required></textarea>
-        <button type="submit">Submit</button>
-        </form>
+        <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; color: #4a5568;">Nama</label>
+        <input type="text" name="nama" placeholder="Masukkan nama..." style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 10px; box-sizing: border-box;">
     </div>
 
-    <!-- Tombol Kirim -->
-    <button type="submit" style="width: 100%; padding: 12px; background: #667eea; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 16px;">
+    <!-- Email -->
+    <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; color: #4a5568;">Email</label>
+        <input type="email" name="email" placeholder="Masukkan email..." style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 10px; box-sizing: border-box;">
+    </div>
+
+    <!-- Pesan -->
+    <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; color: #4a5568;">Pesan</label>
+        <textarea name="pesan" rows="4" placeholder="Tulis pesan..." style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 10px; box-sizing: border-box;"></textarea>
+    </div>
+        <button type="submit" style="width: 100%; padding: 12px; background: #667eea; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 16px;">
         📤 Kirim Pesan
     </button>
-</form>
-
+        </form>
+    </div>
         <div id="form-success" class="success-message">✅ Pesan berhasil dikirim! Terima kasih.</div>
 
         <div class="tombol-kembali">
