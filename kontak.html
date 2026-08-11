@@ -61,25 +61,22 @@
         <h1>📩 Hubungi Saya</h1>
         
         <form action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="1821c658-d9f9-4855-8e7f-9c99eb088266">
-            <div>
-                <label>Nama</label>
-                <input type="text" id="contact-name" placeholder="Masukkan nama...">
-                <small id="name-error" class="error-message">Nama harus diisi!</small>
-            </div>
-            <div>
-                <label>Email</label>
-                <input type="email" id="contact-email" placeholder="Masukkan email...">
-                <small id="email-error" class="error-message">Email tidak valid!</small>
-            </div>
-            <div>
-                <label>Pesan</label>
-                <textarea id="contact-message" rows="4" placeholder="Tulis pesan..."></textarea>
-                <small id="message-error" class="error-message">Pesan harus diisi!</small>
-            </div>
-            <button type="submit" class="btn" style="width: 100%;">📤 Kirim Pesan</button>
-        </form>
-
+       		 <input type="hidden" name="access_key" value="1821c658-d9f9-4855-8e7f-9c99eb088266">
+	
+	<div style="margin-bottom: 15px;">
+        	<label>Nama</label>
+        	<input type="text" name="nama" placeholder="Masukkan nama..." style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 10px; box-sizing: border-box;">
+    	</div>
+    	<div style="margin-bottom: 15px;">
+        	<label>Email</label>
+        	<input type="email" name="email" placeholder="Masukkan email..." style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 10px; box-sizing: border-box;">
+   	</div>
+    	<div style="margin-bottom: 15px;">
+        	<label>Pesan</label>
+        	<textarea name="pesan" rows="4" placeholder="Tulis pesan..." style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 10px; box-sizing: border-box;"></textarea>
+    	</div>
+    	<button type="submit" class="btn" style="width: 100%;">📤 Kirim Pesan</button>
+</form>
         <div id="form-success" class="success-message">✅ Pesan berhasil dikirim! Terima kasih.</div>
 
         <div class="tombol-kembali">
